@@ -1,15 +1,16 @@
 'use strict'
 
-let imageEl = document.getElementById("image");
+// let imageEl = document.getElementById("image");
+
 const axiosInstance = axios.create({
-    baseURL: "https://dog.ceo/api/breeds/image/random",
+    baseURL: "https://picsum.photos/500",
     timeout: 1000
 });
 
 const network = {
-    getImg: async (url) => {
+    getImg: async () => {
         
-        return await axiosInstance.get(`${url}`)
+        return await axiosInstance.get()
             .then(res => {return res.data})
             .catch(err => {
                 console.log("Error ", err);
@@ -22,6 +23,6 @@ const network = {
  setInterval(()=>{
     network.getImg().then(res => {
         console.log(res);
-        imageEl.src = res.message[0]
+        
      })
  },2000)
